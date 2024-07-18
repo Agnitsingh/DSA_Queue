@@ -1,0 +1,47 @@
+class Solution{
+public:
+    vector<int> rearrangeQueue(queue<int> &q1){
+        int n = q1.size();
+        
+        int div = n/2;
+        queue<int>q2;
+        
+        int count = 0;
+        while(!q1.empty() && count<div)
+        {   
+            int el = q1.front();
+            q1.pop();
+            q2.push(el);
+            count = count+1;
+        }
+        
+        while(!q1.empty() && !q2.empty())
+        {
+            int first = q2.front();
+            q2.pop();
+            q1.push(first);
+            int second = q1.front();
+            q1.pop();
+            q1.push(second);
+        }
+        
+        if(n%2 == 1)
+        {
+            int el = q1.front();
+            q1.pop();
+            q1.push(el);
+        }
+        
+        vector<int> ans;
+        
+        while(!q1.empty())
+        {
+            int el = q1.front();
+            q1.pop();
+            ans.push_back(el);
+        }
+        
+        
+        return ans;
+    }
+};
