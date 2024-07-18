@@ -1,0 +1,45 @@
+class Solution
+{
+    public:
+    
+    // Function to reverse first k elements of a queue.
+    queue<int> modifyQueue(queue<int> q, int k) {
+        int total = k;
+        stack<int> st;
+        
+        int n = q.size();
+        int count = 0;
+        
+        while(!q.empty()&& count<=k-1)
+        {
+            int topEl = q.front();
+            q.pop();
+            count++;
+            st.push(topEl);
+        }
+        
+        while(!st.empty())
+        {
+            int el  = st.top();
+            st.pop();
+            q.push(el);
+        }
+        
+        
+        
+        // Placking n-k Elements
+       
+        int replace = n-total;
+        //cout<<replace;
+        
+        while(!q.empty() && replace)
+        {
+            int rel = q.front();
+            //cout<<rel;
+            q.pop();
+            q.push(rel);
+            replace = replace-1;
+        }
+        return q;
+    }
+};
